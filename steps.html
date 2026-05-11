@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>خطوات الصلاة — تعلم الصلاة</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand"><span>🕌</span> تعلم الصلاة</a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="steps.html" class="active">خطوات الصلاة</a></li>
+      <li><a href="prayers.html">الصلوات الخمس</a></li>
+      <li><a href="quiz.html">اختبر نفسك</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="hero-icon">📖</span>
+  <h1>خطوات الصلاة</h1>
+  <p>تعلم كل ركن خطوة بخطوة مع الصور والأذكار الصوتية</p>
+</section>
+
+<div class="container">
+  <div class="section-title">
+    <h2>أركان الصلاة العشرة</h2>
+    <p>اضغط على السهم للانتقال بين الخطوات — اضغط على الصورة لتكبيرها</p>
+  </div>
+
+  <div class="step-navigator">
+    <div class="step-nav-header">
+      <h3 id="nav-label">الخطوة ١ من ١٠</h3>
+      <div class="step-counter-chips" id="chips"></div>
+    </div>
+
+    <div class="step-body">
+      <div class="step-img-panel">
+        <img id="step-img" src="" alt="" onclick="openLightbox(this.src,this.alt)"/>
+      </div>
+      <div class="step-text-panel" id="step-text-panel"></div>
+    </div>
+
+    <div class="step-nav-footer">
+      <div class="step-progress-bar">
+        <div class="step-progress-fill" id="step-progress"></div>
+      </div>
+      <button class="learned-btn" id="learned-btn" onclick="toggleLearned()">☐ علّمت هذه الخطوة</button>
+      <div class="nav-arrows">
+        <button class="arrow-btn" id="prev-btn" onclick="goStep(-1)" title="السابق">→</button>
+        <button class="arrow-btn" id="next-btn" onclick="goStep(1)" title="التالي">←</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-bottom:50px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="prayers.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;">← شاهد الصلوات الخمس</a>
+    <a href="quiz.html" class="btn-secondary">اختبر نفسك 🏆</a>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<footer class="footer">
+  <p>موقع <strong>تعلم الصلاة</strong> — دليل تعليمي للمبتدئين والأطفال</p>
+</footer>
+
+<script>
+const STEPS = [
+  {
+    num:'١', title:'النية',
+    img:'images/prayer-qiyam.png',
+    arabic:'نويتُ أن أصلي هذه الصلاة لله تعالى',
+    transliteration:'Nawaytu an usalliya hadhihi as-salata lillahi ta\'ala',
+    desc:'النية ركن في القلب. قبل الصلاة استحضر في قلبك أنك ستصلي هذه الصلاة لله وحده. استقبل القبلة وتأكد من الوضوء.',
+    audio:null
+  },
+  {
+    num:'٢', title:'تكبيرة الإحرام',
+    img:'images/prayer-takbeer.png',
+    arabic:'اللهُ أَكْبَرُ',
+    transliteration:'Allahu Akbar',
+    desc:'ارفع يديك إلى أذنيك وقل "الله أكبر". هذا ركن لا تصح الصلاة بدونه. بعدها ضع يدك اليمنى على اليسرى عند صدرك.',
+    audio:'الله أكبر'
+  },
+  {
+    num:'٣', title:'دعاء الاستفتاح',
+    img:'images/prayer-qiyam.png',
+    arabic:'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ',
+    transliteration:'Subhanakallahumma wa bihamdika wa tabarakassmuka wa ta\'ala jadduka wa la ilaha ghairuk',
+    desc:'قله سراً بعد التكبير. ثم تعوّذ بالله من الشيطان الرجيم واقرأ البسملة.',
+    audio:'سبحانك اللهم وبحمدك وتبارك اسمك وتعالى جدك ولا إله غيرك'
+  },
+  {
+    num:'٤', title:'قراءة سورة الفاتحة',
+    img:'images/prayer-qiyam.png',
+    arabic:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿٢﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿٣﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧﴾',
+    transliteration:'Bismillah ir-Rahman ir-Rahim | Al-hamdu lillahi rabbi l-alamin...',
+    desc:'الفاتحة ركن في كل ركعة. في الصلوات الجهرية تُقرأ بصوت مسموع. بعدها اقرأ سورة قصيرة في الركعتين الأوليين.',
+    audio:'بسم الله الرحمن الرحيم الحمد لله رب العالمين الرحمن الرحيم مالك يوم الدين إياك نعبد وإياك نستعين اهدنا الصراط المستقيم صراط الذين أنعمت عليهم غير المغضوب عليهم ولا الضالين'
+  },
+  {
+    num:'٥', title:'الركوع',
+    img:'images/prayer-rukoo.png',
+    arabic:'سُبْحَانَ رَبِّيَ الْعَظِيمِ',
+    transliteration:'Subhana Rabbiya al-Adheem (×٣)',
+    desc:'انحنِ بوضع يديك على ركبتيك وظهرك مستوياً. قل "سبحان ربي العظيم" ثلاث مرات. اطمئن في الركوع ولا تتسرع.',
+    audio:'سبحان ربي العظيم'
+  },
+  {
+    num:'٦', title:'الاعتدال',
+    img:'images/prayer-itidal.png',
+    arabic:'سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ\nرَبَّنَا وَلَكَ الْحَمْدُ',
+    transliteration:'Sami\'Allahu liman hamidah — Rabbana wa lakal hamd',
+    desc:'ارفع رأسك من الركوع قائلاً "سمع الله لمن حمده". ثم قف مطمئناً وقل "ربنا ولك الحمد".',
+    audio:'سمع الله لمن حمده، ربنا ولك الحمد'
+  },
+  {
+    num:'٧', title:'السجود',
+    img:'images/prayer-sujood.png',
+    arabic:'سُبْحَانَ رَبِّيَ الْأَعْلَى',
+    transliteration:'Subhana Rabbiya al-A\'la (×٣)',
+    desc:'اسجد على سبعة أعضاء: الجبهة والأنف، الكفان، الركبتان، وأطراف القدمين. قل "سبحان ربي الأعلى" ثلاثاً.',
+    audio:'سبحان ربي الأعلى'
+  },
+  {
+    num:'٨', title:'الجلوس بين السجدتين',
+    img:'images/prayer-julus.png',
+    arabic:'رَبِّ اغْفِرْ لِي',
+    transliteration:'Rabbi ighfir li',
+    desc:'ارفع رأسك من السجدة الأولى واجلس مطمئناً. قل "رب اغفر لي". ثم اسجد السجدة الثانية مثل الأولى.',
+    audio:'رب اغفر لي'
+  },
+  {
+    num:'٩', title:'التشهد',
+    img:'images/prayer-tashahhud.png',
+    arabic:'التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
+    transliteration:'At-tahiyyatu lillahi was-salawatu wat-tayyibat...',
+    desc:'بعد الركعة الثانية اجلس للتشهد. ارفع إصبعك الأيمن عند الشهادة. في التشهد الأخير أضف الصلاة الإبراهيمية والدعاء.',
+    audio:'التحيات لله والصلوات والطيبات، السلام عليك أيها النبي ورحمة الله وبركاته، السلام علينا وعلى عباد الله الصالحين، أشهد أن لا إله إلا الله وأشهد أن محمدا عبده ورسوله'
+  },
+  {
+    num:'١٠', title:'التسليم',
+    img:'images/prayer-tasleem.png',
+    arabic:'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ',
+    transliteration:'As-salamu alaykum wa rahmatullah (يميناً ثم يساراً)',
+    desc:'التفت يميناً وقل "السلام عليكم ورحمة الله"، ثم يساراً وقل نفس الكلام. بهذا تنتهي صلاتك.',
+    audio:'السلام عليكم ورحمة الله'
+  }
+];
+
+let current = 0;
+let learned = JSON.parse(localStorage.getItem('prayer_learned') || '[]');
+
+function buildChips() {
+  const c = document.getElementById('chips');
+  c.innerHTML = '';
+  STEPS.forEach(function(_, i) {
+    const btn = document.createElement('button');
+    btn.className = 'step-chip' + (learned.includes(i) ? ' done' : '') + (i===current ? ' active' : '');
+    btn.textContent = i+1;
+    btn.onclick = function() { current=i; render(); };
+    c.appendChild(btn);
+  });
+}
+
+function render() {
+  const s = STEPS[current];
+  document.getElementById('nav-label').textContent = 'الخطوة ' + s.num + ' من ١٠';
+  document.getElementById('step-img').src = s.img;
+  document.getElementById('step-img').alt = s.title;
+  document.getElementById('step-progress').style.width = ((current+1)/STEPS.length*100)+'%';
+  document.getElementById('prev-btn').disabled = current===0;
+  document.getElementById('next-btn').disabled = current===STEPS.length-1;
+
+  const lb = document.getElementById('learned-btn');
+  lb.textContent = learned.includes(current) ? '✅ تعلمتها!' : '☐ علّمت هذه الخطوة';
+  lb.className = 'learned-btn' + (learned.includes(current) ? ' learned' : '');
+
+  const panel = document.getElementById('step-text-panel');
+  panel.classList.remove('fade-in');
+  void panel.offsetWidth;
+  panel.classList.add('fade-in');
+
+  panel.innerHTML =
+    '<div class="step-num-badge">الخطوة ' + s.num + '</div>' +
+    '<div class="step-title">' + s.title + '</div>' +
+    '<div class="arabic-box">' + s.arabic.replace(/\n/g,'<br/>') + '</div>' +
+    '<p class="transliteration">' + s.transliteration + '</p>' +
+    (s.audio ? '<button class="audio-btn" id="audio-btn" onclick="speak()">🔊 استمع للذكر</button>' : '') +
+    '<p class="step-desc">' + s.desc + '</p>';
+
+  buildChips();
+}
+
+function goStep(dir) {
+  const next = current + dir;
+  if(next < 0 || next >= STEPS.length) return;
+  current = next;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleLearned() {
+  const idx = learned.indexOf(current);
+  if(idx === -1) learned.push(current);
+  else learned.splice(idx,1);
+  localStorage.setItem('prayer_learned', JSON.stringify(learned));
+  render();
+}
+
+let utterance = null;
+function speak() {
+  const s = STEPS[current];
+  if(!s.audio) return;
+  if(window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    const btn = document.getElementById('audio-btn');
+    if(btn) { btn.textContent='🔊 استمع للذكر'; btn.classList.remove('playing'); }
+    return;
+  }
+  utterance = new SpeechSynthesisUtterance(s.audio);
+  utterance.lang = 'ar-SA';
+  utterance.rate = 0.8;
+  const btn = document.getElementById('audio-btn');
+  if(btn) { btn.textContent='⏹ إيقاف'; btn.classList.add('playing'); }
+  utterance.onend = function() {
+    const b = document.getElementById('audio-btn');
+    if(b) { b.textContent='🔊 استمع للذكر'; b.classList.remove('playing'); }
+  };
+  window.speechSynthesis.speak(utterance);
+}
+
+function openLightbox(src,alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+document.addEventListener('keydown', function(e) {
+  if(e.key==='ArrowLeft') goStep(1);
+  if(e.key==='ArrowRight') goStep(-1);
+  if(e.key==='Escape') closeLightbox();
+});
+
+render();
+</script>
+</body>
+</html>

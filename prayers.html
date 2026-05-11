@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>الصلوات الخمس — تعلم الصلاة</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand"><span>🕌</span> تعلم الصلاة</a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="steps.html">خطوات الصلاة</a></li>
+      <li><a href="prayers.html" class="active">الصلوات الخمس</a></li>
+      <li><a href="quiz.html">اختبر نفسك</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="hero-icon">🌙</span>
+  <h1>الصلوات الخمس</h1>
+  <p>تفاصيل كل صلاة من الصلوات اليومية الخمس المفروضة</p>
+</section>
+
+<div class="container">
+  <div class="section-title">
+    <h2>اختر الصلاة</h2>
+    <p>اضغط على أي صلاة لعرض تفاصيلها وركعاتها</p>
+  </div>
+
+  <div class="prayer-tabs">
+    <button class="prayer-tab" onclick="show('fajr')" id="tab-fajr">🌅 الفجر</button>
+    <button class="prayer-tab" onclick="show('dhuhr')" id="tab-dhuhr">☀️ الظهر</button>
+    <button class="prayer-tab" onclick="show('asr')" id="tab-asr">🌤️ العصر</button>
+    <button class="prayer-tab" onclick="show('maghrib')" id="tab-maghrib">🌇 المغرب</button>
+    <button class="prayer-tab" onclick="show('isha')" id="tab-isha">🌙 العشاء</button>
+  </div>
+
+  <!-- FAJR -->
+  <div class="prayer-detail" id="d-fajr">
+    <div class="prayer-header">
+      <h2>🌅 صلاة الفجر</h2>
+      <div class="meta">من طلوع الفجر الصادق حتى شروق الشمس</div>
+      <div class="rakaat-info">
+        <span class="rakaat-info-item">🔢 ركعتان</span>
+        <span class="rakaat-info-item">📣 جهرية</span>
+        <span class="rakaat-info-item">⏰ قبل الشروق</span>
+      </div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟢 الركعة الأولى</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🤲</span><div class="raka-step-text"><h5>النية + تكبيرة الإحرام</h5><small>الله أكبر مع رفع اليدين</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>دعاء الاستفتاح + الفاتحة + سورة (جهراً)</h5><small>بصوت مسموع</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🙇</span><div class="raka-step-text"><h5>الركوع</h5><small>سبحان ربي العظيم × ٣</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الاعتدال</h5><small>سمع الله لمن حمده — ربنا ولك الحمد</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🙏</span><div class="raka-step-text"><h5>السجدة الأولى</h5><small>سبحان ربي الأعلى × ٣</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>الجلوس بين السجدتين</h5><small>رب اغفر لي</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🙏</span><div class="raka-step-text"><h5>السجدة الثانية</h5><small>سبحان ربي الأعلى × ٣</small></div></div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟡 الركعة الثانية</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة + سورة (جهراً)</h5><small>بصوت مسموع</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🙇</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان</h5><small>كما في الركعة الأولى</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأخير</h5><small>التحيات + الصلاة الإبراهيمية + دعاء</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">👋</span><div class="raka-step-text"><h5>التسليم</h5><small>يميناً ثم يساراً</small></div></div>
+    </div>
+  </div>
+
+  <!-- DHUHR -->
+  <div class="prayer-detail" id="d-dhuhr">
+    <div class="prayer-header">
+      <h2>☀️ صلاة الظهر</h2>
+      <div class="meta">من زوال الشمس حتى أن يصير ظل كل شيء مثله</div>
+      <div class="rakaat-info">
+        <span class="rakaat-info-item">🔢 ٤ ركعات</span>
+        <span class="rakaat-info-item">🤫 سرية</span>
+        <span class="rakaat-info-item">☀️ وسط النهار</span>
+      </div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟢 الركعتان الأوليان (فاتحة + سورة سراً)</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🤲</span><div class="raka-step-text"><h5>النية + التكبير</h5><small>نوي صلاة الظهر</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة + سورة (سراً) في كل ركعة</h5><small>بصوت خفيض</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🔁</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان × ٢</h5><small>ركعة أولى ثم ركعة ثانية</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأول</h5><small>التحيات فقط ثم قم</small></div></div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟡 الركعتان الأخيرتان (فاتحة فقط سراً)</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة فقط في كل ركعة (سراً)</h5><small>لا سورة إضافية</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🔁</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان × ٢</h5><small>ركعة ثالثة وركعة رابعة</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأخير + التسليم</h5><small>التحيات + الصلاة الإبراهيمية + دعاء + تسليم</small></div></div>
+    </div>
+  </div>
+
+  <!-- ASR -->
+  <div class="prayer-detail" id="d-asr">
+    <div class="prayer-header">
+      <h2>🌤️ صلاة العصر</h2>
+      <div class="meta">من انتهاء وقت الظهر حتى غروب الشمس</div>
+      <div class="rakaat-info">
+        <span class="rakaat-info-item">🔢 ٤ ركعات</span>
+        <span class="rakaat-info-item">🤫 سرية</span>
+        <span class="rakaat-info-item">🌤️ بعد الظهر</span>
+      </div>
+    </div>
+    <div class="raka-steps">
+      <h4>📋 تُصلى مثل صلاة الظهر تماماً</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🟢</span><div class="raka-step-text"><h5>الركعتان الأوليان</h5><small>فاتحة + سورة (سراً) + ركوع + سجدتان — ثم التشهد الأول</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🟡</span><div class="raka-step-text"><h5>الركعتان الأخيرتان</h5><small>فاتحة فقط (سراً) + ركوع + سجدتان</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأخير + التسليم</h5><small>التحيات + الصلاة الإبراهيمية + دعاء + تسليم</small></div></div>
+    </div>
+    <div style="background:#fff3e0;border:2px solid #ffcc80;border-radius:14px;padding:16px;margin-top:14px;">
+      <p style="color:#e65100;font-weight:700;">⚠️ تنبيه مهم</p>
+      <p style="color:#bf360c;font-size:.9rem;margin-top:6px;">قال النبي ﷺ: «من فاتته صلاة العصر فكأنما وُتر أهله وماله» — حافظ عليها في وقتها.</p>
+    </div>
+  </div>
+
+  <!-- MAGHRIB -->
+  <div class="prayer-detail" id="d-maghrib">
+    <div class="prayer-header">
+      <h2>🌇 صلاة المغرب</h2>
+      <div class="meta">من غروب الشمس حتى اختفاء الشفق الأحمر</div>
+      <div class="rakaat-info">
+        <span class="rakaat-info-item">🔢 ٣ ركعات</span>
+        <span class="rakaat-info-item">📣 جهرية (أوليان)</span>
+        <span class="rakaat-info-item">🌇 بعد الغروب</span>
+      </div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟢 الركعتان الأوليان (جهراً)</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🤲</span><div class="raka-step-text"><h5>النية + التكبير</h5><small>نوي صلاة المغرب</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة + سورة (جهراً) في كل ركعة</h5><small>بصوت مسموع</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🔁</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان × ٢</h5><small>ركعة أولى وثانية</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأول</h5><small>التحيات فقط ثم قم</small></div></div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟡 الركعة الثالثة (سراً)</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة فقط (سراً)</h5><small>لا سورة إضافية</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🙏</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان</h5><small></small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأخير + التسليم</h5><small>التحيات + الصلاة الإبراهيمية + دعاء + تسليم</small></div></div>
+    </div>
+  </div>
+
+  <!-- ISHA -->
+  <div class="prayer-detail" id="d-isha">
+    <div class="prayer-header">
+      <h2>🌙 صلاة العشاء</h2>
+      <div class="meta">من اختفاء الشفق الأحمر حتى منتصف الليل</div>
+      <div class="rakaat-info">
+        <span class="rakaat-info-item">🔢 ٤ ركعات</span>
+        <span class="rakaat-info-item">📣 جهرية (أوليان)</span>
+        <span class="rakaat-info-item">🌙 الليل</span>
+      </div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟢 الركعتان الأوليان (جهراً)</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🤲</span><div class="raka-step-text"><h5>النية + التكبير</h5><small>نوي صلاة العشاء</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة + سورة (جهراً) في كل ركعة</h5><small>بصوت مسموع</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🔁</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان × ٢</h5><small>ركعة أولى وثانية</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأول</h5><small>التحيات فقط ثم قم</small></div></div>
+    </div>
+    <div class="raka-steps">
+      <h4>🟡 الركعتان الأخيرتان (سراً)</h4>
+      <div class="raka-step-item"><span class="raka-step-icon">🧍</span><div class="raka-step-text"><h5>الفاتحة فقط في كل ركعة (سراً)</h5><small></small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🔁</span><div class="raka-step-text"><h5>ركوع + اعتدال + سجدتان × ٢</h5><small>ركعة ثالثة ورابعة</small></div></div>
+      <div class="raka-step-item"><span class="raka-step-icon">🪑</span><div class="raka-step-text"><h5>التشهد الأخير + التسليم</h5><small>التحيات + الصلاة الإبراهيمية + دعاء + تسليم</small></div></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:28px 0 50px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="steps.html" class="btn-secondary">← راجع الخطوات</a>
+    <a href="quiz.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;">اختبر نفسك 🏆</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>موقع <strong>تعلم الصلاة</strong> — دليل تعليمي للمبتدئين والأطفال</p>
+</footer>
+
+<script>
+function show(name) {
+  document.querySelectorAll('.prayer-detail').forEach(function(d){d.classList.remove('active')});
+  document.querySelectorAll('.prayer-tab').forEach(function(t){t.classList.remove('active')});
+  document.getElementById('d-'+name).classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+window.addEventListener('DOMContentLoaded', function(){
+  var p = new URLSearchParams(location.search).get('p');
+  show(['fajr','dhuhr','asr','maghrib','isha'].includes(p) ? p : 'fajr');
+});
+</script>
+</body>
+</html>
